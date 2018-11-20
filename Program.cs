@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 
 namespace FirstApp
-{    я тут ау
+{    и опять я !
 
    public class listMeter
     {
