@@ -1,41 +1,43 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FirstApp;
 
 
 namespace FirstApp
-{    и опять я !
+{
 
-   public class listMeter
+    public class listMeter
     {
-        public long MeasuringAddingProcessAdd (List<int> lMetter) //<-здесь подчеркивает MeasuringAddingProcessAdd пишет что ошибка не все ветви кода возвращают значение.
+        public void MeasuringAddingProcessAdd(List<int> lMetter)
         {
 
-            
-            long start = System.Diagnostics.Milliseconds();
-            MessageBox.Show("");
-            sw.Stop();
-            MessageBox.Show((sw.ElapsedMilliseconds / 100.0).ToString());
 
-            long start = System.currentTimeMillis();
+            Stopwatch ProcessTime = new Stopwatch();
+            ProcessTime.Start();
             for (int i = 0; i <= 10000000; i++)
             {
-                lMetter.add(0);
+                lMetter.Add(0);
             }
-            long end = System.currentTimeMillis();
-            return end - start;
+            ProcessTime.Stop();
+            Console.WriteLine(ProcessTime.Elapsed);
         }
 
+      
     }
-    
-    
-     class Program
+
+
+
+
+    class Program
     {
         static void Main(string[] args)
         {
-            LinkedList<int> a = new LinkedList<int>(); //<--и тут подчеркивеет
+
+            LinkedList<int> a = new LinkedList<int>();
             listMeter o1 = new listMeter();
             System.Console.WriteLine("LinkedList TimeMillisAdd=" + o1.MeasuringAddingProcessAdd(a));
             /* System.Console.WriteLine("LinkedList TimeMillisGet=" + o1.MeasuringAddingProcessGet(a));
@@ -44,3 +46,4 @@ namespace FirstApp
         }
     }
 }
+ 
