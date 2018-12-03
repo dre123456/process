@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using FirstApp;
 
 namespace FirstApp
@@ -12,25 +12,56 @@ namespace FirstApp
     {
         public long MeasuringAddingProcessAdd(List<int> lMetter)
         {
-           long start = System.Diagnostics.Stopwatch();
+
+            Stopwatch myStopwatch = new Stopwatch();
+            myStopwatch.Start();
             for (int i = 0; i <= 10000000; i++)
-         {
-             lMetter.Add(0);
-         }
-            long stop = System.Diagnostics.Stopwatch();
-         //Console.WriteLine(ProcessTime.Elapsed);
-            return stop-start ;
-    }      
-    }
+                lMetter.Add(0);
+            myStopwatch.Stop();
+            TimeSpan ts = myStopwatch.Elapsed;
+            long elapsedTime = ts.Milliseconds;
+            return elapsedTime;
+
+
+        }
+
+        public long MeasuringAddingProcessGet(List<int> lMetter)
+        {
+
+            Stopwatch myStopwatch = new Stopwatch();
+            myStopwatch.Start();
+            for (int i = 0; i <= 10000000; i++)
+                lMetter.BinarySearch(0);
+            myStopwatch.Stop();
+            TimeSpan ts = myStopwatch.Elapsed;
+            long elapsedTime = ts.Milliseconds;
+            return elapsedTime;
+        }
+            
+               
+                        public long MeasuringAddingProcessRemove(List<int> lMetter)
+                        {
+
+                            Stopwatch myStopwatch = new Stopwatch();
+                            myStopwatch.Start();
+                            for (int i = 0; i <= 10000000; i++)
+                                lMetter.Remove(0);
+                            myStopwatch.Stop();
+                            TimeSpan ts = myStopwatch.Elapsed;
+                            long elapsedTime = ts.Milliseconds;
+                            return elapsedTime;
+                        }
+                }
     class Program
     {
-        static void Main(string[] args){
+        static void Main(string[] args)
+        {
             List<int> a = new List<int>(new LinkedList<int>());
             listMeter o1 = new listMeter();
-            System.Console.WriteLine("LinkedList TimeMillisAdd="+ o1.MeasuringAddingProcessAdd(a));
-            /* System.Console.WriteLine("LinkedList TimeMillisGet=" + o1.MeasuringAddingProcessGet(a));
-               System.Console.WriteLine("LinkedList TimeMillisGet=" + o1.MeasuringAddingProcessRemove(a));*/
-            System.Console.WriteLine();
+            System.Console.WriteLine("LinkedList TimeMillisAdd=" + o1.MeasuringAddingProcessAdd(a));
+            System.Console.WriteLine("LinkedList TimeMillisGet=" + o1.MeasuringAddingProcessGet(a));
+            System.Console.WriteLine("LinkedList TimeMillisGet=" + o1.MeasuringAddingProcessRemove(a));
+            System.Console.ReadKey();
         }
     }
 }
