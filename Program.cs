@@ -37,15 +37,17 @@ namespace FirstApp
             long elapsedTime = ts.Milliseconds;
             return elapsedTime;
         }
-            
-               
-                        public long MeasuringAddingProcessRemove(List<int> lMetter)
+
+               public long MeasuringAddingProcessRemove(List<int> lMetter)
                         {
 
                             Stopwatch myStopwatch = new Stopwatch();
                             myStopwatch.Start();
-                            for (int i = 0; i <= 10000000; i++)
-                                lMetter.Remove(0);
+            for (int i = 0; i <= 10000000; i++)
+               if (i == 10000000)
+              {
+                    lMetter.Remove(i);
+               }
                             myStopwatch.Stop();
                             TimeSpan ts = myStopwatch.Elapsed;
                             long elapsedTime = ts.Milliseconds;
@@ -60,7 +62,7 @@ namespace FirstApp
             listMeter o1 = new listMeter();
             System.Console.WriteLine("LinkedList TimeMillisAdd=" + o1.MeasuringAddingProcessAdd(a));
             System.Console.WriteLine("LinkedList TimeMillisGet=" + o1.MeasuringAddingProcessGet(a));
-            System.Console.WriteLine("LinkedList TimeMillisGet=" + o1.MeasuringAddingProcessRemove(a));
+            System.Console.WriteLine("LinkedList TimeMillisRemove=" + o1.MeasuringAddingProcessRemove(a));
             System.Console.ReadKey();
         }
     }
